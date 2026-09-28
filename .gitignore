@@ -12,7 +12,6 @@ dist
 dist-ssr
 *.local
 .vscode
-pnpm-lock.yaml
 
 # Ignore used font files (users will need to download them)
 public/geistMono
