@@ -1,0 +1,18 @@
+packages:
+  - 'ui'
+  - 'widgets/**'
+  - 'packages/**'
+
+allowBuilds:
+  '@parcel/watcher': false
+  esbuild: false
+
+catalog:
+  react: '^19.2.8'
+  react-compiler-runtime: '^1.0.0'
+  react-dom: '^19.2.8'
+  zebar: '3.3.1'
+  tailwindcss: '^3.4.19'
+  postcss: '^8.5.26'
+  '@types/react': '^19.2.18'
+  '@types/react-dom': '^19.2.5'

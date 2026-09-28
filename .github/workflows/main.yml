@@ -1,0 +1,79 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version, for example v1.0.0'
+        required: true
+        default: 'v1.0.0'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-26.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 11.25.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 26
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build shared packages and widgets
+        run: pnpm build
+
+      - name: Create release archive
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: |
+          set -euo pipefail
+
+          release_dir="release/$(basename "$GITHUB_REPOSITORY")"
+          mkdir -p "$release_dir/widgets"
+
+          cp zpack.json "$release_dir/"
+          cp -R resources "$release_dir/"
+
+          for widget_dir in widgets/*; do
+            if [[ -d "$widget_dir/dist" ]]; then
+              mkdir -p "$release_dir/$widget_dir"
+              cp -R "$widget_dir/dist" "$release_dir/$widget_dir/"
+            fi
+
+            if [[ -f "$widget_dir/README.md" ]]; then
+              mkdir -p "$release_dir/$widget_dir"
+              cp "$widget_dir/README.md" "$release_dir/$widget_dir/"
+            fi
+          done
+
+          mkdir -p dist
+          cp -R "$release_dir" dist/
+          (cd release && zip -r "../$(basename "$GITHUB_REPOSITORY")-$RELEASE_VERSION.zip" .)
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ inputs.version }}
+          name: Release ${{ inputs.version }}
+          generate_release_notes: true
+          files: ${{ github.event.repository.name }}-${{ inputs.version }}.zip
+
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ github.event.repository.name }}-${{ inputs.version }}
+          path: dist/

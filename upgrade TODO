@@ -1,0 +1,15 @@
+TypeScript 7: wait for @typescript-eslint/parser and related packages to support TypeScript 7.
+Widget ESLint 10: wait for eslint-plugin-react to add ESLint 10 support.
+The upgrades should then be straightforward:
+
+pnpm update typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser --latest --recursive
+pnpm update eslint @eslint/js eslint-plugin-react --latest --recursive
+pnpm install
+pnpm peers check
+pnpm build
+pnpm lint
+
+
+Until then, the current versions are the newest compatible choices for this project.
+
+

@@ -1,0 +1,10 @@
+{
+  "extends": "@myles-zebar/typescript/react-library.json",
+  "include": ["src", "types"],
+  "exclude": ["dist", "build", "node_modules"],
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "dist"
+  },
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

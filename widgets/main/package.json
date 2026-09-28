@@ -1,0 +1,50 @@
+{
+  "name": "@myles-zebar/main",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:watch": "vite build --watch",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@myles-zebar/config": "workspace:*",
+    "@myles-zebar/tailwind": "workspace:*",
+    "@myles-zebar/ui": "workspace:*",
+    "@radix-ui/react-slider": "^1.4.7",
+    "@tanstack/react-query": "^5.102.8",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "clsx": "^2.1.1",
+    "dotenv": "^17.4.2",
+    "framer-motion": "^13.2.0",
+    "lucide-react": "^1.39.0",
+    "react": "catalog:",
+    "react-compiler-runtime": "catalog:",
+    "react-dom": "catalog:",
+    "react-use-measure": "^2.1.7",
+    "tailwind-merge": "^3.6.0",
+    "zebar": "catalog:"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@myles-zebar/typescript": "workspace:*",
+    "@types/node": "^26.4.1",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "^6.1.1",
+    "autoprefixer": "^10.5.4",
+    "eslint": "^9.39.5",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.6",
+    "globals": "^17.12.0",
+    "postcss": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "^6.0.3",
+    "vite": "^8.2.2",
+    "vite-plugin-node": "^8.0.0"
+  }
+}

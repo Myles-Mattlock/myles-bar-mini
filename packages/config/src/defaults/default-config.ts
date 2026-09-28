@@ -1,0 +1,56 @@
+import { catppuccinThemes, defaultTheme } from '../defaults/theme-presets';
+import { RootConfig } from '../types';
+
+export const defaultConfig: RootConfig = {
+  version: 1,
+  app: {
+    useAutoTiling: false,
+    zebarWebsocketUri: 'ws://localhost:6123',
+    themes: [defaultTheme, ...catppuccinThemes],
+    currentThemeId: 'default',
+    radius: '0.5rem',
+    windowEffect: 'acrylic',
+  },
+  widgets: {
+    main: {
+      flowLauncherPath: '',
+      mediaMaxWidth: '400',
+      weatherThresholds: [
+        { id: 'weather-1', min: -10, max: 0, labelColor: '--danger' },
+        { id: 'weather-2', min: 1, max: 6, labelColor: '--warning' },
+        { id: 'weather-3', min: 7, max: 21, labelColor: '--text' },
+        { id: 'weather-4', min: 22, max: 25, labelColor: '--warning' },
+        { id: 'weather-5', min: 26, max: 42, labelColor: '--danger' },
+      ],
+      systemStatThresholds: [
+        { id: 'stat-1', min: 0, max: 70, labelColor: '--text' },
+        { id: 'stat-2', min: 70, max: 85, labelColor: '--warning' },
+        { id: 'stat-3', min: 85, max: 100, labelColor: '--danger' },
+      ],
+      batteryThresholds: [
+        { id: 'battery-1', min: 0, max: 20, labelColor: '--danger' },
+        { id: 'battery-2', min: 21, max: 74, labelColor: '--warning' },
+        { id: 'battery-3', min: 75, max: 80, labelColor: '--success' },
+        { id: 'battery-4', min: 81, max: 90, labelColor: '--warning' },
+        { id: 'battery-5', min: 91, max: 100, labelColor: '--danger' },
+      ],
+      useInlineStats: false,
+      pinnedSystrayIcons: [],
+      weatherUnit: 'celsius',
+      dynamicWorkspaceIndicator: false,
+      marginX: 0,
+      paddingLeft: 4,
+      paddingRight: 4,
+      roundedCorners: false,
+      barRadius: '0.5rem',
+      timeFormat: 'EEE d MMM t',
+      timeLocale: 'en-GB',
+      providers: {
+        cpu: true,
+        memory: true,
+        weather: true,
+        battery: true,
+      },
+    },
+  },
+};
